@@ -33,6 +33,23 @@ class ParkingLot {
     }
   }
 
+  status() {
+    let status = 'Slot No.\n';
+    let registrationNumbers = 'Registration No\n';
+    let colors = 'Colour\n';
+    this.slots.forEach((slot, index) => {
+      if (slot) {
+        status += `${index + 1}\n`;
+        registrationNumbers += `${slot.registrationNumber}\n`;
+        colors += `${slot.color}\n`;
+      }
+    });
+    return status + registrationNumbers + colors;
+  }
+
+  
+  
+
 
 
 }
