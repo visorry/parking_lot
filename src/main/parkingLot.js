@@ -54,8 +54,12 @@ class ParkingLot {
     return registrationNumbers.length ? registrationNumbers.join(', ') : 'Not found';
   }
 
-
-
+  slotNumberForCarsWithColour(color) {
+    const slotNumber = this.slots.findIndex(slot => slot && slot.color === color) + 1;
+    return slotNumber ? slotNumber.toString() : 'Not found';
+  }
+  
+  
 }
 
 module.exports = ParkingLot;
