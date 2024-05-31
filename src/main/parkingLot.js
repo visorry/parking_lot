@@ -18,12 +18,13 @@ class ParkingLot {
       const ticket = new Ticket(slotIndex + 1, registrationNumber, color);
       this.slots[slotIndex] = ticket;
       return `Allocated slot number: ${slotIndex + 1}`;
-    } else {
+    } 
+    else {
       return 'Sorry, parking lot is full';
     }
   }
 
-  
+
 
 }
 
