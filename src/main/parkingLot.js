@@ -47,8 +47,12 @@ class ParkingLot {
     return status + registrationNumbers + colors;
   }
 
-  
-  
+  registrationNumbersForCarsWithColour(color) {
+    const registrationNumbers = this.slots
+      .filter(slot => slot && slot.color === color)
+      .map(slot => slot.registrationNumber);
+    return registrationNumbers.length ? registrationNumbers.join(', ') : 'Not found';
+  }
 
 
 
