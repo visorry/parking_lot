@@ -15,4 +15,18 @@ if (process.argv.length > 2) {
     rl.on('line', (line) => {
       console.log(commandExecutor.execute(line));
     });
+  } else {
+    // Interactive mode
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+  
+    rl.setPrompt('parking_lot> ');
+    rl.prompt();
+  
+    rl.on('line', (line) => {
+      console.log(commandExecutor.execute(line));
+      rl.prompt();
+    });
   }
