@@ -52,13 +52,7 @@ parking_lot/
 
 ### Steps
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url> parking_lot
-   cd parking_lot
-   ```
-
-2. Run the setup script to install dependencies and run tests:
+Run the setup script to install dependencies and run tests:
    ```bash
    ./bin/setup
    ```
