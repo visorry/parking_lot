@@ -22,6 +22,8 @@ class CommandExecutor {
         return this.parkingLot.slotNumberForCarsWithColour(args[0]);
       case 'slot_number_for_registration_number':
         return this.parkingLot.slotNumberForRegistrationNumber(args[0]);
+      case 'exit':
+        process.exit(0);
       default:
         return 'Invalid command';
     }
