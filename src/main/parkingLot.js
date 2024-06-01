@@ -29,7 +29,7 @@ class ParkingLot {
       this.slots[slotNumber - 1] = null;
       return `Slot number ${slotNumber} is free`;
     } else {
-    //   return `////////////`;
+      return `Slot number ${slotNumber} is already free`;
     }
   }
 
