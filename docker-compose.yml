@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  parking_lot:
+    build: .
+    command: ["node", "src/main/index.js"]
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
