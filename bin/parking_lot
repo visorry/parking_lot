@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -n "$1" ]; then
+  # Run with file input
+  docker-compose run --rm parking_lot node src/main/index.js "$1"
+else
+  # Run in interactive mode
+  docker-compose run --rm parking_lot
+fi
