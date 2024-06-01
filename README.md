@@ -1,80 +1,161 @@
 # Parking Lot System
 
 ## Overview
-This project implements an automated ticketing system for a multi-storey parking lot. It allows customers to park their cars and provides functionality for ticket issuance, slot allocation, and vehicle retrieval. The system also supports querying for information such as registration numbers and slot numbers based on various criteria, including color.
+
+This is an automated ticketing system for a multi-storey parking lot. The system allows customers to use the parking lot without human intervention. It supports the following functionalities:
+- Issue tickets to cars entering the parking lot.
+- Allocate the nearest available parking slot to incoming cars.
+- Track the registration number and color of parked cars.
+- Mark slots as available when cars leave.
+- Query the system for various details such as registration numbers by color, slot number by registration number, etc.
 
 ## Features
-- Creation of a multi-storey parking lot with configurable slots
-- Allocation of parking slots to incoming cars
-- Retrieval of parked cars based on registration number and color
-- Display of current parking lot status
+
+- Create a parking lot with a specified number of slots.
+- Park cars in the nearest available slot.
+- Leave the parking lot, freeing up a slot.
+- Display the current status of the parking lot.
+- Retrieve registration numbers of cars by color.
+- Retrieve slot numbers of cars by color.
+- Retrieve the slot number of a car by its registration number.
+- Interactive command prompt for manual input.
+- File input mode for batch processing of commands.
 
 ## Directory Structure
-The project follows a well-organized directory structure for easy navigation and maintenance:
 
 ```
 parking_lot/
-├── bin/            # Contains executable scripts for project setup and execution
-│   ├── setup       # Script for setting up the project environment
-│   └── parking_lot # Script for running the parking lot system
-├── src/            # Contains source code files
-│   ├── main/       # Contains main project code files
-│   └── test/       # Contains test files for unit and integration testing
-├── .gitignore      # Specifies intentionally untracked files to ignore
-├── README.md       # Project documentation with clear instructions
-└── package.json    # Contains metadata and dependencies for the project
+├── bin/
+│   ├── setup
+│   └── parking_lot
+├── src/
+│   ├── main/
+│   │   ├── index.js
+│   │   ├── commands.js
+│   │   ├── parkingLot.js
+│   │   └── ticket.js
+│   └── test/
+│       └── parkingLot.test.js
+├── Dockerfile
+├── docker-compose.yml
+├── Makefile
+├── package.json
+└── README.md
 ```
 
-## Build Approach
-The project uses a simple build approach with executable scripts and npm for managing dependencies:
+## Installation
 
-- `bin/setup`: Script for setting up the project environment, installing dependencies, and running tests.
-- `bin/parking_lot`: Script for executing the parking lot system with input from a file or interactive shell.
+### Prerequisites
+
+- Docker
+- Docker Compose
+
+### Steps
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url> parking_lot
+   cd parking_lot
+   ```
+
+2. Run the setup script to install dependencies and run tests:
+   ```bash
+   ./bin/setup
+   ```
 
 ## Usage
 
-### Setting Up Environment
+### Interactive Mode
 
-To install dependencies and set up the project, run the setup script:
-
-```bash
-./bin/setup
-```
-
-### Running the Program
-
-You can interact with the parking lot system in two ways:
-
-#### Interactive Mode
-
-Launch the interactive shell to input commands manually:
+To run the program in interactive mode:
 
 ```bash
 ./bin/parking_lot
 ```
 
-#### File Input Mode
+Example session:
+```
+$ create_parking_lot 6
+Created a parking lot with 6 slots
+$ park KA-01-HH-1234 White
+Allocated slot number: 1
+$ park KA-01-HH-9999 White
+Allocated slot number: 2
+$ leave 1
+Slot number 1 is free
+$ status
+Slot No.    Registration No    Colour
+2           KA-01-HH-9999      White
+$ exit
+```
 
-Provide a filename as a parameter to read commands from a file:
+### File Input Mode
 
+To run the program with input from a file:
+
+```bash
+./bin/parking_lot <file_path>
+```
+
+Example:
 ```bash
 ./bin/parking_lot file_inputs.txt
 ```
-You can use the provided file_inputs.txt file for testing.
 
-### Commands
+Contents of `file_inputs.txt`:
+```
+create_parking_lot 6
+park KA-01-HH-1234 White
+park KA-01-HH-9999 White
+leave 1
+status
+exit
+```
 
-The system supports the following commands:
+### Available Commands
 
-- `create_parking_lot <number>`: Creates a parking lot with the specified number of slots.
+- `create_parking_lot <capacity>`: Creates a parking lot with the specified number of slots.
 - `park <registration_number> <color>`: Parks a car with the given registration number and color.
-- `leave <slot_number>`: Removes the car from the specified slot.
+- `leave <slot_number>`: Frees up the slot number.
 - `status`: Displays the current status of the parking lot.
-- `registration_numbers_for_cars_with_colour <color>`: Retrieves registration numbers of cars with the specified color.
-- `slot_numbers_for_cars_with_colour <color>`: Retrieves slot numbers of cars with the specified color.
-- `slot_number_for_registration_number <registration_number>`: Retrieves the slot number for the car with the specified registration number.
-- `exit`: Terminates the program and returns control to the shell.
+- `registration_numbers_for_cars_with_colour <color>`: Lists the registration numbers of all cars of the specified color.
+- `slot_numbers_for_cars_with_colour <color>`: Lists the slot numbers of all cars of the specified color.
+- `slot_number_for_registration_number <registration_number>`: Displays the slot number for the given registration number.
+- `exit`: Exits the interactive command prompt.
+
+## Running Tests
+
+To run the tests:
+
+```bash
+npm test
+```
+
+## Docker
+
+### Build the Docker Image
+
+To build the Docker image:
+
+```bash
+docker-compose build
+```
+
+### Running the Container
+
+To run the container in interactive mode:
+
+```bash
+docker-compose run --rm parking_lot
+```
+
+To run the container with input from a file:
+
+```bash
+docker-compose run --rm parking_lot node src/main/index.js <file_path>
+```
 
 ## License
 
 This project is solely for educational purposes and is not licensed for distribution or commercial use. Sharing this project on any public platform is strictly prohibited. All rights reserved to the author.
+
