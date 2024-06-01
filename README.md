@@ -12,6 +12,26 @@ To install dependencies and set up the project, run the setup script:
 ./bin/setup
 ```
 
+### Running the Program
+
+You can interact with the parking lot system in two ways:
+
+#### Interactive Mode
+
+Launch the interactive shell to input commands manually:
+
+```bash
+./bin/parking_lot
+```
+
+#### File Input Mode
+
+Provide a filename as a parameter to read commands from a file:
+
+```bash
+./bin/parking_lot file_inputs.txt
+```
+You can use the provided file_inputs.txt file for testing.
 
 ### Commands
 
