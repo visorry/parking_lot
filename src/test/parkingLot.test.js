@@ -24,7 +24,11 @@ test('status', () => {
   parkingLot.createParkingLot(6);
   parkingLot.park('KA-01-HH-1234', 'White');
   parkingLot.park('KA-01-HH-9999', 'White');
-  expect(parkingLot.status()).toBe('Slot No.\tRegistration No\tColour\n1\tKA-01-HH-1234\tWhite\n2\tKA-01-HH-9999\tWhite\n');
+  const expectedStatus =
+    "Slot No.\n1\n2\n" +
+    "Registration No\nKA-01-HH-1234\nKA-01-HH-9999\n" +
+    "Colour\nWhite\nWhite\n";
+  expect(parkingLot.status()).toBe(expectedStatus);
 });
 
 test('find registration numbers for cars with colour', () => {
@@ -44,10 +48,9 @@ test('find slot numbers for cars with colour', () => {
 });
 
 test('find slot number for registration number', () => {
-  const parkingLot = new ParkingLot();
-  parkingLot.createParkingLot(6);
-  parkingLot.park('KA-01-HH-1234', 'White');
-  expect(parkingLot.findSlotNumberForRegistrationNumber('KA-01-HH-1234')).toBe(1);
-  expect(parkingLot.findSlotNumberForRegistrationNumber('MH-04-AY-1111')).toBe('Not found');
-  
-});
+    const parkingLot = new ParkingLot();
+    parkingLot.createParkingLot(6);
+    parkingLot.park('KA-01-HH-1234', 'White');
+    expect(Number(parkingLot.findSlotNumberForRegistrationNumber('KA-01-HH-1234'))).toBe(1);
+    expect(parkingLot.findSlotNumberForRegistrationNumber('MH-04-AY-1111')).toBe('Not found');
+  });
