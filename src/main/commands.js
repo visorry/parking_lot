@@ -16,6 +16,8 @@ class CommandExecutor {
         return this.parkingLot.leave(parseInt(args[0]));
       case 'status':
         return this.parkingLot.status();
+      case 'registration_numbers_for_cars_with_colour':
+        return this.parkingLot.registrationNumbersForCarsWithColour(args[0]);
       default:
         return 'Invalid command';
     }
