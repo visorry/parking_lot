@@ -1,6 +1,35 @@
 # Parking Lot System
 
+## Overview
 This project implements an automated ticketing system for a multi-storey parking lot. It allows customers to park their cars and provides functionality for ticket issuance, slot allocation, and vehicle retrieval. The system also supports querying for information such as registration numbers and slot numbers based on various criteria, including color.
+
+## Features
+- Creation of a multi-storey parking lot with configurable slots
+- Allocation of parking slots to incoming cars
+- Retrieval of parked cars based on registration number and color
+- Display of current parking lot status
+
+## Directory Structure
+The project follows a well-organized directory structure for easy navigation and maintenance:
+
+```
+parking_lot/
+├── bin/            # Contains executable scripts for project setup and execution
+│   ├── setup       # Script for setting up the project environment
+│   └── parking_lot # Script for running the parking lot system
+├── src/            # Contains source code files
+│   ├── main/       # Contains main project code files
+│   └── test/       # Contains test files for unit and integration testing
+├── .gitignore      # Specifies intentionally untracked files to ignore
+├── README.md       # Project documentation with clear instructions
+└── package.json    # Contains metadata and dependencies for the project
+```
+
+## Build Approach
+The project uses a simple build approach with executable scripts and npm for managing dependencies:
+
+- `bin/setup`: Script for setting up the project environment, installing dependencies, and running tests.
+- `bin/parking_lot`: Script for executing the parking lot system with input from a file or interactive shell.
 
 ## Usage
 
@@ -45,14 +74,6 @@ The system supports the following commands:
 - `slot_numbers_for_cars_with_colour <color>`: Retrieves slot numbers of cars with the specified color.
 - `slot_number_for_registration_number <registration_number>`: Retrieves the slot number for the car with the specified registration number.
 - `exit`: Terminates the program and returns control to the shell.
-
-## Testing
-
-To run tests, ensure you have Jest installed and then execute:
-
-```bash
-npm test
-```
 
 ## License
 
