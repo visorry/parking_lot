@@ -1,22 +1,28 @@
-.PHONY: all clean test
-
 # Variables
-SRC_DIR = src
-BIN_DIR = bin
-TEST_DIR = test
-
-# Commands
-all: $(BIN_DIR)/parking_lot
-
-clean:
-	rm -rf $(BIN_DIR)
-
-test:
-	# Add test commands here
+NODE = node
 
 # Targets
-$(BIN_DIR)/parking_lot: $(SRC_DIR)/main/index.js $(SRC_DIR)/main/commands.js $(SRC_DIR)/main/parkingLot.js
-	mkdir -p $(BIN_DIR)
-	cp $(SRC_DIR)/main/index.js $(BIN_DIR)/parking_lot
-	cp $(SRC_DIR)/main/commands.js $(SRC_DIR)/main/parkingLot.js $(BIN_DIR)
+.PHONY: all
+all: setup
 
+.PHONY: setup
+setup:
+    @echo "Setting up project..."
+    @npm install
+
+.PHONY: test
+test:
+    @echo "Running tests..."
+    @$(NODE) ./node_modules/.bin/jest
+
+.PHONY: clean
+clean:
+    @echo "Cleaning up..."
+    @rm -rf node_modules
+
+.PHONY: run
+run:
+    @$(NODE) src/main/index.js
+
+# Default target
+.DEFAULT_GOAL := all
