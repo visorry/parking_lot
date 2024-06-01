@@ -14,6 +14,8 @@ class CommandExecutor {
         return this.parkingLot.park(args[0], args[1]);
       case 'leave':
         return this.parkingLot.leave(parseInt(args[0]));
+      case 'status':
+        return this.parkingLot.status();
       default:
         return 'Invalid command';
     }
